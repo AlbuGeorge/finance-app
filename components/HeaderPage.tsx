@@ -5,7 +5,9 @@ const HeaderPage = (props) => {
     <section className="max-w-4xl mx-auto">
       <div className="flex justify-between py-4 items-center">
         <h1 className="text-4xl font-medium text-gray-800">{props.pageName}</h1>
-        <button className="bg-blue-700 px-6 py-3 rounded-lg text-white font-medium">
+        <button
+          onClick={props.onClick}
+          className="bg-blue-700 px-6 py-3 rounded-lg text-white font-medium">
           {props.pageButton}
         </button>
       </div>
