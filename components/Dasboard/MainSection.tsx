@@ -1,12 +1,12 @@
 import React from 'react'
 import Card from '../Card'
-import summary from '../../constants/data'
+import data from '../../constants/data'
 
 const MainSection = () => {
   return (
     <div className="mx-auto max-w-6xl">
       <div className="flex gap-6">
-        {summary.map((el) => (
+        {data.summary.map((el) => (
           <Card
             key={el.id}
             title={el.title}

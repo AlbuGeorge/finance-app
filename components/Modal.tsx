@@ -19,6 +19,8 @@ const Modal = ({ children, isOpen, handleClose }: modalProps) => {
     }
   }, [handleClose])
 
+  useEffect(() => {})
+
   //close modal on Scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -32,7 +34,7 @@ const Modal = ({ children, isOpen, handleClose }: modalProps) => {
     <ReactPortal wrapperId="react-portal-modal-container">
       <>
         <div className="fixed top-0 left-0 h-screen w-screen z-40 bg-neutral-800 opacity-50" />
-        <div className="fixed rounded-lg flex-col box-border z-50 bg-white min-w-fit overflow-hidden p-5 inset-y-32 inset-x-96">
+        <div className="fixed rounded-lg flex-col box-border z-50 bg-white min-w-fit overflow-hidden p-5 inset-y-36 inset-x-96">
           <div className="box-border h-5/6">{children}</div>
         </div>
       </>
