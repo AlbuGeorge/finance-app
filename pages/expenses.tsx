@@ -1,18 +1,29 @@
 import React, { useState } from 'react'
 import HeaderPage from '../components/HeaderPage'
 import Modal from '../components/Modal'
-import data from '../constants/data'
+import { nanoid } from 'nanoid'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { ADD_EXPENSE, REMOVE_EXPENSE } from '../redux/reducers/expenses'
+
+const initialFormState = {
+  id: '',
+  title: '',
+  amount: '',
+  category: '',
+  date: '',
+}
 
 const Expenses = () => {
   const [isModalOpen, setisModalOpen] = useState(false)
+  const expenses = useSelector((state) => state.expenses)
+  const [formData, setFormData] = useState(initialFormState)
+  const dispatch = useDispatch()
 
-  const initialState = {
-    title: '',
-    amount: '',
-    date: '',
-    category: '',
-  }
-  const [formData, setFormData] = useState(initialState)
+  const isEmpty = expenses.length === 0
+
+  console.log(isEmpty)
+  console.log(expenses)
 
   const openModal = () => {
     setisModalOpen(!isModalOpen)
@@ -20,14 +31,21 @@ const Expenses = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    data.transactions.push(formData)
+    dispatch(ADD_EXPENSE(formData))
     setisModalOpen(!isModalOpen)
+    setFormData(initialFormState)
+  }
+
+  const handleRemove = (id) => {
+    console.log(id)
+    dispatch(REMOVE_EXPENSE(id))
   }
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e?.target
     setFormData((prevData) => ({
       ...prevData,
+      id: nanoid(),
       [name]: value,
     }))
   }
@@ -136,20 +154,36 @@ const Expenses = () => {
           </div>
         </Modal>
       )}
-      {/* transactions */}
+      {/* expenses */}
       <div className="mx-auto max-w-4xl">
         <div className="p-5 bg-white rounded-lg shadow-md">
           <h1 className="text-xl font-semibold">Transactions</h1>
           <div className="p-2">
+            <div className="p-4 mr-4 flex justify-between">
+              <span>Description</span>
+              <span>Category</span>
+              <span>Date</span>
+              <span>Amount</span>
+              <span>Delete</span>
+            </div>
             <div className="flex flex-col">
-              {data.transactions.map((el) => (
-                <div className="flex justify-between rounded-md bg-slate-50 p-2 m-2">
-                  <span>{el.title}</span>
-                  {/* <span>{el.category}</span> */}
-                  <span>{el.date}</span>
-                  <span>{el.amount} RON</span>
-                </div>
-              ))}
+              {isEmpty && <p className="text-cente">No expenses added</p>}
+              {!isEmpty &&
+                expenses.map((el) => (
+                  <div
+                    key={el.id}
+                    className="flex justify-between items-center rounded-md bg-slate-50 p-2 m-2">
+                    <span>{el.title}</span>
+                    <span>{el.category}</span>
+                    <span>{el.date}</span>
+                    <span>{el.amount} RON</span>
+                    <button
+                      onClick={() => handleRemove(el.id)}
+                      className="bg-red-500 text-white p-2 rounded-md">
+                      Remove
+                    </button>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

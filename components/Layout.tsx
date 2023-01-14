@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { BiHomeAlt } from 'react-icons/bi'
 import { RxDashboard } from 'react-icons/rx'
 import { BsPiggyBank } from 'react-icons/bs'
+import { RiPlantLine, RiCoinsLine, RiShoppingBag3Line } from 'react-icons/ri'
 const Layout = (props: {
   children:
     | string
@@ -22,16 +23,6 @@ const Layout = (props: {
     | undefined
 }) => {
   const [open, setOpen] = useState(true)
-  const Menus = [
-    { title: 'Dashboard', src: 'Chart_fill' },
-    { title: 'Inbox', src: 'Chat' },
-    { title: 'Accounts', src: 'User', gap: true },
-    { title: 'Schedule ', src: 'Calendar' },
-    { title: 'Search', src: 'Search' },
-    { title: 'Analytics', src: 'Chart' },
-    { title: 'Files ', src: 'Folder', gap: true },
-    { title: 'Setting', src: 'Setting' },
-  ]
 
   return (
     <div className="flex">
@@ -74,7 +65,7 @@ const Layout = (props: {
           <Link
             href="/expenses"
             className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
-            <BiHomeAlt size={24} />
+            <RiShoppingBag3Line size={24} />
             <span className={`${!open && 'hidden'} origin-left duration-200`}>
               Expenses
             </span>
@@ -85,6 +76,22 @@ const Layout = (props: {
             <BsPiggyBank size={24} />
             <span className={`${!open && 'hidden'} origin-left duration-200`}>
               Savings
+            </span>
+          </Link>
+          <Link
+            href="/income"
+            className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
+            <RiCoinsLine size={24} />
+            <span className={`${!open && 'hidden'} origin-left duration-200`}>
+              Income
+            </span>
+          </Link>
+          <Link
+            href="/investments"
+            className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
+            <RiPlantLine size={24} />
+            <span className={`${!open && 'hidden'} origin-left duration-200`}>
+              Investments
             </span>
           </Link>
         </ul>

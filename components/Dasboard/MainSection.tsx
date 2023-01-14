@@ -1,19 +1,21 @@
 import React from 'react'
 import Card from '../Card'
-import data from '../../constants/data'
+import { useSelector } from 'react-redux'
 
 const MainSection = () => {
+  const expenses = useSelector((state) => state.expenses)
+
+  const expenseAmount = expenses
+    .map((expense) => parseFloat(expense.amount))
+    .reduce((acc, item) => (acc += item), 0)
+    .toFixed(2)
+
+  console.log(expenseAmount)
+
   return (
     <div className="mx-auto max-w-6xl">
       <div className="flex gap-6">
-        {data.summary.map((el) => (
-          <Card
-            key={el.id}
-            title={el.title}
-            amount={el.amount}
-            currency={el.currency}
-          />
-        ))}
+        <Card amount={expenseAmount} currency="RON" title="Expenses"></Card>
       </div>
     </div>
   )
