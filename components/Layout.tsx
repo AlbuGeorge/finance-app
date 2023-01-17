@@ -63,6 +63,14 @@ const Layout = (props: {
             </span>
           </Link>
           <Link
+            href="/income"
+            className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
+            <RiCoinsLine size={24} />
+            <span className={`${!open && 'hidden'} origin-left duration-200`}>
+              Income
+            </span>
+          </Link>
+          <Link
             href="/expenses"
             className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
             <RiShoppingBag3Line size={24} />
@@ -76,22 +84,6 @@ const Layout = (props: {
             <BsPiggyBank size={24} />
             <span className={`${!open && 'hidden'} origin-left duration-200`}>
               Savings
-            </span>
-          </Link>
-          <Link
-            href="/income"
-            className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
-            <RiCoinsLine size={24} />
-            <span className={`${!open && 'hidden'} origin-left duration-200`}>
-              Income
-            </span>
-          </Link>
-          <Link
-            href="/investments"
-            className="flex rounded-md p-2 cursor-pointer hover:bg-gray-100/25 text-gray-300  items-center gap-x-4 mt-2 ">
-            <RiPlantLine size={24} />
-            <span className={`${!open && 'hidden'} origin-left duration-200`}>
-              Investments
             </span>
           </Link>
         </ul>

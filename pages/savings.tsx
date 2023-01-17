@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { ADD_SAVING, REMOVE_SAVING } from '../redux/reducers/savings'
+import TransactionCard from '../components/TransactionCard'
 
 const initialFormState = {
   id: '',
@@ -152,30 +153,18 @@ const Savings = () => {
         <div className="p-5 bg-white rounded-lg shadow-md">
           <h1 className="text-xl font-semibold">Savings</h1>
           <div className="p-2">
-            <div className="p-4 mr-4 flex justify-between">
-              <span>Description</span>
-              <span>Category</span>
-              <span>Date</span>
-              <span>Amount</span>
-              <span>Delete</span>
-            </div>
             <div className="flex flex-col">
               {isEmpty && <p className="text-cente">No savings added</p>}
               {!isEmpty &&
                 savings.map((el) => (
-                  <div
+                  <TransactionCard
                     key={el.id}
-                    className="flex justify-between items-center rounded-md bg-slate-50 p-2 m-2">
-                    <span>{el.title}</span>
-                    <span>{el.category}</span>
-                    <span>{el.date}</span>
-                    <span>{el.amount} RON</span>
-                    <button
-                      onClick={() => handleRemove(el.id)}
-                      className="bg-red-500 text-white p-2 rounded-md">
-                      Remove
-                    </button>
-                  </div>
+                    title={el.title}
+                    category={el.category}
+                    amount={el.amount}
+                    date={el.date}
+                    handleRemove={(id) => handleRemove}
+                  />
                 ))}
             </div>
           </div>

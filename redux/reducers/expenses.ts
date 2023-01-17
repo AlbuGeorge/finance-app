@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { nanoid } from 'nanoid'
 
 const expensesSlice = createSlice({
   name: 'expenses',
   initialState: [
     {
+      id: nanoid(),
       title: 'Phone',
       amount: 300,
-      date: '10-01-2023',
+      date: Date(),
       category: 'miscellaneous',
     },
   ],
