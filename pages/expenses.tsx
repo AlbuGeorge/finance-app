@@ -12,7 +12,7 @@ const initialFormState = {
   title: '',
   amount: '',
   category: '',
-  date: {},
+  date: '',
 }
 
 const Expenses = () => {
@@ -22,9 +22,6 @@ const Expenses = () => {
   const dispatch = useDispatch()
 
   const isEmpty = expenses.length === 0
-
-  console.log(isEmpty)
-  console.log(expenses)
 
   const openModal = () => {
     setisModalOpen(!isModalOpen)

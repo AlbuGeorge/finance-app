@@ -8,7 +8,7 @@ const expensesSlice = createSlice({
       id: nanoid(),
       title: 'Phone',
       amount: 300,
-      date: Date(),
+      date: '2023-01-01',
       category: 'miscellaneous',
     },
   ],

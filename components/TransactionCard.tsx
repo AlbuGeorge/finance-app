@@ -16,7 +16,7 @@ const TransactionCard = (props) => {
       <div>
         <div className="flex my-2">
           <span className="bg-blue-500 rounded-md p-1 px-2 mr-3 text-white font-medium">
-            {formatDate(props.date)}
+            {props.date}
           </span>
           <span className="bg-blue-500 rounded-md p-1 px-2 text-white font-medium">
             {toUpperCase(props.category)}
